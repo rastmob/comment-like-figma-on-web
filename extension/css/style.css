@@ -26,13 +26,11 @@ body {
   position: relative;
   max-width: 300px;
   height: 215px;
-  background-color: #fff;
+  
   margin: 30px 10px;
   padding: 20px 15px;
-
   display: flex;
   flex-direction: column;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   transition: 0.3s ease-in-out;
   border-radius: 15px;
 }
@@ -40,6 +38,7 @@ body {
 .container .card:hover {
   height: 55vh;
   background-color: #fff;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
 }
 
 .container .comment-card {
