@@ -38,14 +38,14 @@ body {
 }
 
 .container .card:hover {
-  height: 320px;
+  height: 55vh;
+  background-color: #fff;
 }
 
 .container .comment-card {
   position: relative;
   max-width: 300px;
-  height: 215px;
-  background-color: #fff;
+  
   margin: 30px 10px;
   padding: 20px 15px;
 
