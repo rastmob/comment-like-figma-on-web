@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon app.js",
+    "prepare-db" : "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,7 +16,9 @@
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "nodemon": "^2.0.20"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.25.8"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/rastmob/comment-like-figma-on-web/issues"
   },
-  "homepage": "https://github.com/rastmob/comment-like-figma-on-web#readme"
+  "homepage": "https://github.com/rastmob/comment-like-figma-on-web#readme",
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
+  }
 }
