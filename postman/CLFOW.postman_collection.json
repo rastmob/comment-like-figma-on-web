@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "877f98b8-d172-49ac-b57e-819b17cbc6c7",
+		"name": "CLFOW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16968773"
+	},
+	"item": [
+		{
+			"name": "getComments",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "createComment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"selector\": \"burcin\",\n    \"comment\" : \"comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/comment",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"comment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
