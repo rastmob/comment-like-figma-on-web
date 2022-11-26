@@ -4,7 +4,10 @@ const menuItem = {
   contexts: ['all'],
 }
 
-chrome.contextMenus.create(menuItem);
+chrome.contextMenus.create(
+  menuItem,
+  contextMenuCallback,
+  );
 
 chrome.contextMenus.onClicked.addListener((clickData) => {
   if (clickData.menuItemId == "addComment-CLFW") {
@@ -18,5 +21,10 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
     chrome.notifications.create('createComment-CLFW', menuItemOptions);
 
     console.log('clickData: ', clickData);
+    chrome.tabs.create({url: "templates/popup.html"});
   }
 });
+
+function contextMenuCallback() {
+  console.log('contextMenuCallback');
+}

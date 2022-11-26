@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Comment Figma on Web",
+  "name": "Comment Like Figma on Web",
   "description": "",
   "version": "1.0",
   "icons": {
@@ -11,7 +11,8 @@
 
   "browser_action": {
     "default_icon": "images/favicon-16x16.png",
-    "default_popup": "templates/popup.html"
+    "default_popup": "templates/menu-popup.html",
+    "detault-title": "Comment Like Figma on Web"
   },
 
   "background": {
