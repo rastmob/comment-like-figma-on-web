@@ -83,7 +83,7 @@ body {
   top: -180px;
   padding: 10px 15px;
   color: #111;
-  text-align: center;
+  text-align: left;
 
   visibility: hidden;
   opacity: 0;
