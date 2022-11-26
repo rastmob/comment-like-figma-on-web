@@ -2,10 +2,23 @@
 <html>
     <head>
         <title>Comment Figma on Web</title>
-        <script src="script/jquery-3.6.1.min.js"></script>
-        <script src="script/popup.js"></script>
+        <script src="../script/jquery-3.6.1.min.js"></script>
+        <script src="../script/popup.js"></script>
     </head>
     <body>
-        Comment Figma on Web
+        <form onsubmit="return sendComment(this)">
+            <div>
+              <label>Name:</label>
+              <input id="name" name="name" type="text">
+            </div>
+            <div>
+              <label>Email:</label>
+              <input id="email" name="email" type="email">
+            </div>
+            <div>
+              <input id="submit" type="submit">
+            </div>
+          </form>
+          
     </body>
 </html>
