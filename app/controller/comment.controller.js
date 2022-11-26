@@ -1,5 +1,35 @@
 const db = require("../models/index")
-const printCommentHello = (req, res) => {
+
+const getComments = async (req, res) => {
+
+
+    var site_id, page_id;
+    db.sites.findOne({
+        where: {domain: req.headers.host},
+    }).then(site => {
+            site_id = site.id
+            db.pages.findOne({
+                where: {url: req.originalUrl, site_id: site_id},
+            }).then(page => {
+                page_id = page.id
+                db.comments.findAll({
+                    where: {page_id: page_id},
+                }).then(comments => {
+                    res.send({
+                        "status"  : 200,
+                        "message" : "Comments fetched successfully",
+                        "comments": comments,
+                    });
+                })
+            })
+        }
+    ).catch(e => {
+        res.send({
+            "status" : 500,
+            "message": e.message,
+        })
+    })
+
 
 }
 
@@ -37,9 +67,7 @@ const createNewComment = async (req, res) => {
             "page"       : page,
             "createdPage": createdPage,
             "comment"    : comment,
-
         });
-
 
     } catch (e) {
         console.log(e)
@@ -48,6 +76,6 @@ const createNewComment = async (req, res) => {
 }
 
 module.exports = {
-    printCommentHello,
+    getComments,
     createNewComment,
 }
