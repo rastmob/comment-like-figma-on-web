@@ -23,7 +23,8 @@
   "permissions": [
           "storage",
           "notifications",
-          "contextMenus"
+          "contextMenus",
+          "activeTab"
         ],
 
   "options_page": "templates/options.html"
