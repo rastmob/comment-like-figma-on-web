@@ -41,6 +41,7 @@ body {
 }
 
 .container .comment-card {
+  
   position: relative;
   max-width: 300px;
   
@@ -52,6 +53,8 @@ body {
   transition: 0.3s ease-in-out;
   border-radius: 15px;
   height: 320px;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+  z-index:1000;
 
 }
 
