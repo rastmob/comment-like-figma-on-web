@@ -21,7 +21,10 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
     chrome.notifications.create('createComment-CLFW', menuItemOptions);
 
     console.log('clickData: ', clickData);
-    chrome.tabs.create({url: "templates/popup.html"});
+    console.log('clickData.pageUrl: ', clickData.pageUrl);
+    chrome.tabs.executeScript({
+      file: 'script/popup.js'
+    });
   }
 });
 

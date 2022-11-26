@@ -1,31 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Comment Figma on Web</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <script src="../script/jquery-3.6.1.min.js"></script>
-        <script src="../script/popup.js"></script>
-    </head>
-    <body>
-        <form onsubmit="return sendComment(this)">
-          <div class = "container">
-            <div class = "comment-card">           
-              <div class = content>
-                <div>
-                  <label for="comment-text">Please enter your comment:</label>
-                  <textarea class="form-control" id="comment-text" rows="6"></textarea>
-                  <button type="button" class="btn mt-3 w-100 submit-btn">Submit</button>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../script/jquery-3.6.1.min.js"></script>
+<script src="../script/popup.js"></script>
+<form onsubmit="return sendComment(this)">
+  <div class="container">
+    <div class="comment-card">
+      <div class=content>
+        <div>
+          <label for="comment-text">Please enter your comment:</label>
+          <textarea class="form-control" id="comment-text" rows="6"></textarea>
+          <button type="button" class="btn btn-primary mt-3 w-100 submit-btn">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
-                </div>           
-
-              </div>
-            </div>    
-          </div>
-
-
-           
-          </form>
-          
-    </body>
-</html>
+<script>
+  function sendComment() {
+    console.log('send Form');
+    $.ajax({
+      type: "POST",
+      url: "http://192.168.100.12:4444/comment",
+      data: {
+        address: window.location.href,
+        comment: "test " + new Date().getTime,
+        selector: "test"
+      },
+      success: success,
+      dataType: dataType
+    });
+  }
+</script>
