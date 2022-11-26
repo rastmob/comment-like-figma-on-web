@@ -2,22 +2,34 @@
 <html>
     <head>
         <title>Comment Figma on Web</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/style.css">
         <script src="../script/jquery-3.6.1.min.js"></script>
         <script src="../script/popup.js"></script>
     </head>
     <body>
         <form onsubmit="return sendComment(this)">
-            <div>
-              <label>Name:</label>
-              <input id="name" name="name" type="text">
-            </div>
-            <div>
-              <label>Email:</label>
-              <input id="email" name="email" type="email">
-            </div>
-            <div>
-              <input id="submit" type="submit">
-            </div>
+          <div class = "container">
+            <div class = "comment-card">           
+              <div class = content>
+                <div>
+                  <label>Name:</label>
+                  <input id="name" name="name" type="text">
+                </div>
+                <div>
+                  <label>Email:</label>
+                  <input id="email" name="email" type="email">
+                </div>
+                <div>
+                  <input id="submit" type="submit">
+                </div>
+
+              </div>
+            </div>    
+          </div>
+
+
+           
           </form>
           
     </body>
