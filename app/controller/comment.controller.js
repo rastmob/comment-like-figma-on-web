@@ -1,15 +1,24 @@
 const db = require("../models/index")
-
+const helper = require("../utilities/functions")
+let url;
 const getComments = async (req, res) => {
 
+    url = helper.getUrlParams(req.body.address)
 
+   if(!url) {
+        res.send({
+            "status" : 500,
+            "message": "address parameters is required.",
+        })
+        return;
+   }
     var site_id, page_id;
     db.sites.findOne({
-        where: {domain: req.headers.host},
+        where: {domain: url.host},
     }).then(site => {
             site_id = site.id
             db.pages.findOne({
-                where: {url: req.originalUrl, site_id: site_id},
+                where: {url: url.path, site_id: site_id},
             }).then(page => {
                 page_id = page.id
                 db.comments.findAll({
@@ -35,16 +44,23 @@ const getComments = async (req, res) => {
 
 
 const createNewComment = async (req, res) => {
-
+    url = helper.getUrlParams(req.body.address);
+    if(!url) {
+        res.send({
+            "status" : 500,
+            "message": "address parameters is required.",
+        })
+        return;
+    }
     try {
         const [site, createdSite] = await db.sites.findOrCreate({
-            where   : {domain: req.headers.host},
-            defaults: {title: req.headers.host, active: 1, deleted: 0}
+            where   : {domain: url.host},
+            defaults: {title: url.host, active: 1, deleted: 0}
         });
 
         const [page, createdPage] = await db.pages.findOrCreate({
-            where   : {url: req.originalUrl, site_id: site.id},
-            defaults: {title: req.originalUrl, active: 1, deleted: 0}
+            where   : {url: url.path, site_id: site.id},
+            defaults: {title: url.path, active: 1, deleted: 0}
         });
 
         // create comment to add site and page id
