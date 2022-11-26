@@ -24,4 +24,4 @@ db.sequelize.sync()
 routeManager(app)
 
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 4444);
