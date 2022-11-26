@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "Comment Figma on Web",
+  "description": "",
+  "version": "1.0",
+  "icons": {
+    "32": "images/favicon-32x32.png",
+    "16": "images/favicon-16x16.png"
+  },
+
+  "browser_action": {
+    "default_icon": "images/favicon-16x16.png",
+    "default_popup": "templates/popup.html"
+  },
+
+  "background": {
+    "scripts": ["script/eventPage.js"],
+    "persistent": false
+  },
+
+  "permissions": [
+          "storage",
+          "notifications",
+          "contextMenus"
+        ],
+
+  "options_page": "templates/options.html"
+}
