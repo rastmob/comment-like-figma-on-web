@@ -29,7 +29,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     chrome.storage.local.get("rmInject", function (result) {
       if (typeof result.rmInject == "boolean" && result.rmInject) {
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          fetch("http://localhost:4444/comment/", {
+          fetch("https://clfow.herokuapp.com/comment/", {
             method: "GET",
             headers: {
               Accept: "application/json",

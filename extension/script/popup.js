@@ -19,7 +19,7 @@ function inject(boolean) {
     return;
   }
   if (boolean) {
-    fetch("http://localhost:4444/comment/", {
+    fetch("https://clfow.herokuapp.com/comment/", {
       method: "GET",
       headers: {
         Accept: "application/json",
