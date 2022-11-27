@@ -19,7 +19,23 @@ function inject(boolean) {
     return;
   }
   if (boolean) {
-    // chrome.tabs.executeScript({ file: "script/index.js" });
+    fetch("http://localhost:4444/comment/", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        chrome.tabs.executeScript(
+          {
+            code: "var RMComment = " + data + ";",
+          },
+          function () {
+            chrome.tabs.executeScript({ file: "script/page-load.js" });
+          }
+        );
+      });
   }
   if (!boolean) {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

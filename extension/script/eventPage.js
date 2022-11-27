@@ -29,11 +29,23 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     chrome.storage.local.get("rmInject", function (result) {
       if (typeof result.rmInject == "boolean" && result.rmInject) {
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          // TODO get comments pass page-load
-          console.log(tabs);
-          chrome.tabs.executeScript({
-            file: "script/page-load.js",
-          });
+          fetch("http://localhost:4444/comment/", {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              chrome.tabs.executeScript(
+                {
+                  code: "var RMComment = " + data + ";",
+                },
+                function () {
+                  chrome.tabs.executeScript({ file: "script/page-load.js" });
+                }
+              );
+            });
         });
       }
     });
