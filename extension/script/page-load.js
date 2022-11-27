@@ -10,7 +10,7 @@ function sendComment() {
   console.log('send Form');
   $.ajax({
     type: "POST",
-    url: "http://192.168.100.12:4444/comment",
+    url: "https://clfow.herokuapp.com/comment",
     data: {
       address: window.location.href,
       comment: "test " + new Date().getTime,
