@@ -1,11 +1,18 @@
-<form>
+<meta
+  http-equiv="Content-Security-Policy"
+  content="script-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='"
+/>
+
+<form action="https://clfow.herokuapp.com/comment" method="POST">
   <div class="container">
     <div class="comment-card">
-      <div class=content>
+      <div class="content">
         <div>
           <label for="comment-text">Please enter your comment:</label>
           <textarea class="form-control" id="comment-text" rows="6"></textarea>
-          <button onclick="sendComment()" type="button" class="btn btn-primary mt-3 w-100 submit-btn">Submit</button>
+          <button type="button" class="btn btn-primary mt-3 w-100 submit-btn">
+            Submit
+          </button>
         </div>
       </div>
     </div>
@@ -13,18 +20,36 @@
 </form>
 
 <script>
-  function sendComment() {
-    console.log('send Form');
-    $.ajax({
-      type: "POST",
-      url: "http://192.168.100.12:4444/comment",
-      data: {
-        address: window.location.href,
-        comment: "test " + new Date().getTime,
-        selector: "test"
-      },
-      success: success,
-      dataType: dataType
-    });
+
+  alert()
+    function sendComment() {
+      console.log('send Form');
+      $.ajax({
+        type: "POST",
+        url: "http://192.168.100.12:4444/comment",
+        data: {
+          address: window.location.href,
+          comment: "test " + new Date().getTime,
+          selector: "test"
+        },
+        success: success,
+        dataType: dataType
+      });
+    }
+
+    let params = {
+      address: window.location.href,
+          comment: 'test',
+          selector: 'test'
   }
+
+  let response = await fetch('http://192.168.100.12:4444/comment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params)
+  });
+
+  let data = await response.json();
 </script>
