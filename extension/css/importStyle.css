@@ -1,0 +1,23 @@
+div.RModal {
+  position: fixed;
+  display: none;
+  left: 50%;
+  top: 50%;
+  z-index: 1000;
+  background-color: black;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+.hoverElRM {
+  transition: 1s !important;
+  cursor: pointer;
+}
+.hoverElRM:hover {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}

@@ -1,14 +1,29 @@
-console.log('popup.js loaded');
+chrome.storage.local.get("rmInject", function (result) {
+  if (typeof result.rmInject == "boolean") {
+    document.getElementById("check1").checked = result.rmInject;
+  }
+});
 
-fetch("https://raw.githubusercontent.com/rastmob/comment-like-figma-on-web/main/extension/templates/popup.html" /*, options */)
-  .then((response) => response.text())
-  .then((html) => {
-    console.log(html);
-    let div = document.createElement('div');
-    div.innerHTML = html.trim();
-    document.body.appendChild(div);
-  })
-  .catch((error) => {
-    console.warn(error);
+document.getElementById("check1").addEventListener("change", (event) => {
+  chrome.storage.local.set({ rmInject: event.currentTarget.checked });
+  chrome.storage.local.get("rmInject", function (result) {
+    if (typeof result.rmInject == "boolean") {
+      inject(result.rmInject);
+    }
   });
+});
 
+function inject(boolean) {
+  if (typeof boolean != "boolean") {
+    console.log("Error : type is not boolean");
+    return;
+  }
+  if (boolean) {
+    // chrome.tabs.executeScript({ file: "script/index.js" });
+  }
+  if (!boolean) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      chrome.tabs.reload(tabs[0].id);
+    });
+  }
+}
