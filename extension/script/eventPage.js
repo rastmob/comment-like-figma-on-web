@@ -7,7 +7,7 @@ const menuItem = {
 chrome.contextMenus.create(
   menuItem,
   contextMenuCallback,
-  );
+);
 
 chrome.contextMenus.onClicked.addListener((clickData) => {
   if (clickData.menuItemId == "addComment-CLFW") {
@@ -22,9 +22,15 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
 
     console.log('clickData: ', clickData);
     console.log('clickData.pageUrl: ', clickData.pageUrl);
+
+
     chrome.tabs.executeScript({
-      file: 'script/popup.js'
-    });
+       file: 'script/popup.js'
+     }, function (results) {
+      // chrome.tabs.sendMessage(tab.id, {"message": "need to update tab", "tab": tab.id});
+     console.log(results);
+
+    }); 
   }
 });
 
