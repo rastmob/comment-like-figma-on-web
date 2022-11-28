@@ -29,11 +29,9 @@ document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
   })
     .then(function (res) {
       console.log(res);
-      window.location.reload();
     })
     .catch(function (res) {
       console.log(res);
-      window.location.reload();
     });
   console.log("Submit");
   document.getElementById(modalId).style.display = "none";
