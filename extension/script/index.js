@@ -8,9 +8,8 @@ var submit = false;
 // const modalId = new Date().getTime() + "-RModal";
 document.body.innerHTML += `
     <div id="${modalId}" class="${modalClass}">
-      <label for="comment-text">Please enter your comment:</label>
-      <textarea class="form-control" id="${modalClass}-comment-text" rows="6"></textarea>
-      <button id="${modalId}-submit" type="button" class="btn btn-primary mt-3 w-100 submit-btn">Submit</button>
+      <textarea id="${modalClass}-comment-text" name="text" class="comment-input" placeholder="Comment"></textarea>
+      <button id="${modalId}-submit" type="button">Submit</button>
     </div>`;
 document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
   console.log(
@@ -30,9 +29,11 @@ document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
   })
     .then(function (res) {
       console.log(res);
+      window.location.reload();
     })
     .catch(function (res) {
       console.log(res);
+      window.location.reload();
     });
   console.log("Submit");
   document.getElementById(modalId).style.display = "none";
@@ -50,7 +51,6 @@ document.querySelectorAll("*").forEach((el, i) => {
   el.addEventListener("mouseover", (event) => {
     if (!modalOpen) {
       selector = generateQuerySelector(event.target);
-      console.log(selector);
       event.target.classList.add("hoverElRM");
       document.querySelector(".hoverElRM").addEventListener(
         "contextmenu",
@@ -77,11 +77,19 @@ var generateQuerySelector = function (el) {
   if (el.tagName.toLowerCase() == "html") return "HTML";
   var str = el.tagName;
   str += el.id != "" ? "#" + el.id : "";
-  if (el.className) {
-    var classes = el.className.split(/\s/);
+  if (el.className && typeof el.className === "string") {
+    var classes = el.className
+      .split(/\s/)
+      .filter((data) => data != "hoverElRM");
     for (var i = 0; i < classes.length; i++) {
       str += "." + classes[i];
     }
   }
-  return generateQuerySelector(el.parentNode) + " > " + str;
+  if (str.endsWith(".")) {
+    str = str.slice(0, -1);
+  }
+  return (generateQuerySelector(el.parentNode) + " > " + str)
+    .replaceAll(". ", " ")
+    .replaceAll("..", ".")
+    .replaceAll("  ", " ");
 };
