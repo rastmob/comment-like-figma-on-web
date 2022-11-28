@@ -17,12 +17,11 @@ document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
     "::: Comment",
     document.getElementById(`${modalClass}-comment-text`).value
   );
-  fetch("https://clfow.herokuapp.com/comment", {
+  fetch("https://clfow.herokuapp.com/comment/add", {
+    method: "POST",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
     },
-    method: "POST",
     body: JSON.stringify({
       address: window.location.href,
       comment: document.getElementById(`${modalClass}-comment-text`).value,
@@ -50,17 +49,8 @@ window.addEventListener("scroll", (e) => {
 document.querySelectorAll("*").forEach((el, i) => {
   el.addEventListener("mouseover", (event) => {
     if (!modalOpen) {
-      if (
-        event.target.classList.value
-          .replace("hoverElRM", "")
-          .trim()
-          .replace(" ", ".")
-      ) {
-        selector = event.target.classList.value
-          .replace("hoverElRM", "")
-          .trim()
-          .replace(" ", ".");
-      }
+      selector = generateQuerySelector(event.target);
+      console.log(selector);
       event.target.classList.add("hoverElRM");
       document.querySelector(".hoverElRM").addEventListener(
         "contextmenu",
@@ -82,3 +72,16 @@ document.querySelectorAll("*").forEach((el, i) => {
     event.target.classList.remove("hoverElRM");
   });
 });
+
+var generateQuerySelector = function (el) {
+  if (el.tagName.toLowerCase() == "html") return "HTML";
+  var str = el.tagName;
+  str += el.id != "" ? "#" + el.id : "";
+  if (el.className) {
+    var classes = el.className.split(/\s/);
+    for (var i = 0; i < classes.length; i++) {
+      str += "." + classes[i];
+    }
+  }
+  return generateQuerySelector(el.parentNode) + " > " + str;
+};

@@ -26,25 +26,32 @@ function contextMenuCallback() {
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (changeInfo.status === "complete") {
+    console.log(":::Page Complete");
     chrome.storage.local.get("rmInject", function (result) {
       if (typeof result.rmInject == "boolean" && result.rmInject) {
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          fetch("https://clfow.herokuapp.com/comment/", {
-            method: "GET",
+          fetch("https://clfow.herokuapp.com/comment/get", {
+            method: "POST",
             headers: {
-              Accept: "application/json",
+              "Content-Type": "application/json",
             },
+            body: JSON.stringify({ address: tabs[0].url }),
           })
-            .then((response) => response.text())
+            .then((response) =>
+              response.status == 200 ? response.text() : null
+            )
             .then((data) => {
-              chrome.tabs.executeScript(
-                {
-                  code: "var RMComment = " + data + ";",
-                },
-                function () {
-                  chrome.tabs.executeScript({ file: "script/page-load.js" });
-                }
-              );
+              console.log(data);
+              if (data) {
+                chrome.tabs.executeScript(
+                  {
+                    code: "var RMComment = " + data + ";",
+                  },
+                  function () {
+                    chrome.tabs.executeScript({ file: "script/page-load.js" });
+                  }
+                );
+              }
             });
         });
       }
