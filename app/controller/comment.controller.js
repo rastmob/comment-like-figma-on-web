@@ -1,7 +1,7 @@
 const db = require("../models/index")
 const helper = require("../utilities/functions")
 let url;
-let site_id, page_id;
+
 const getComments = async (req, res) => {
     try {
 
@@ -15,57 +15,42 @@ const getComments = async (req, res) => {
             return;
         }
 
-        await db.sites.findOne({
+        const site = await db.sites.findOne({
             where: {domain: url.host, active: 1, deleted: 0},
-        }).then(site => {
-            if (!site) {
-                res.send({
-                    "status" : 500,
-                    "message": "Site not found.",
-                })
-                return;
-            }
-            site_id = site.id;
-        }).catch(err => {
+        });
+        if(!site){
             res.send({
                 "status" : 500,
-                "message": err.message,
+                "message": "Site not found",
             })
+            return;
+        }
+
+
+        const page = await db.pages.findOne({
+            where: {site_id: site.id, url: url.path, active: 1, deleted: 0},
         });
-
-        await db.pages.findOne({
-            where: {site_id: site_id, url: url.path, active: 1, deleted: 0},
-        }).then(page => {
-            if (!page) {
-                res.status(200).send({
-                    "status" : 500,
-                    "message": "No comments found for this page.",
-                });
-                return;
-            }
-            page_id = page.id;
-
-        }).catch(err => {
+        if(!page){
             res.send({
                 "status" : 500,
-                "message": err.message,
+                "message": "No comments found for this page. Page not found",
             })
+            return;
+        }
+
+        const comments = await db.comments.findAll({
+            where: {page_id: page.id},
         });
 
-        await db.comments.findAll({
-            where: {page_id: page_id},
-        }).then(comments => {
-            res.status(200).send({
+        res.send(
+            {
                 "status"  : 200,
                 "message" : "Comments fetched successfully",
+                "count"   : comments.length,
                 "comments": comments,
-            });
-        }).catch(err => {
-            res.send({
-                "status" : 500,
-                "message": err.message,
-            })
-        });
+
+            }
+        )
     } catch (e) {
         res.send(
             {
