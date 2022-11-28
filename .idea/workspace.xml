@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a29ded4b-d1e0-4e6f-8f52-9337608b5311" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controller/index.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/controller/index.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +39,7 @@
       <updated>1669461695678</updated>
       <workItem from="1669461698018" duration="664000" />
       <workItem from="1669464506105" duration="10855000" />
+      <workItem from="1669638950425" duration="960000" />
     </task>
     <task id="LOCAL-00001" summary="edit config json or deploy">
       <created>1669476306117</created>
