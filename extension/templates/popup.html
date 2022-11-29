@@ -1,34 +1,25 @@
-<meta
-  http-equiv="Content-Security-Policy"
-  content="script-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='"
-/>
-<form>
-  <div class="container">
-    <div class="comment-card">
-      <div class=content>
-        <div>
-          <label for="comment-text">Please enter your comment:</label>
-          <textarea class="form-control" id="comment-text" rows="6"></textarea>
-          <button onclick="sendComment()" type="button" class="btn btn-primary mt-3 w-100 submit-btn">Submit</button>
-        </div>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>RastMobile</title>
+  </head>
+  <body>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        id="getCommentCheckBox"
+        type="checkbox"
+        value=""
+      />
+      <label class="form-check-label" for="getCommentCheckBox">
+        Load Comments every page load
+      </label>
     </div>
-  </div>
-</form>
-
-<script>
-  function sendComment() {
-    console.log('send Form');
-    $.ajax({
-      type: "POST",
-      url: "https://clfow.herokuapp.com/comment",
-      data: {
-        address: window.location.href,
-        comment: "test " + new Date().getTime,
-        selector: "test"
-      },
-      success: success,
-      dataType: dataType
-    });
-  }
-</script>
+    <script src="../script/popup.js"></script>
+  </body>
+</html>

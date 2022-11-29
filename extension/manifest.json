@@ -8,34 +8,30 @@
     "32": "images/favicon-32x32.png",
     "16": "images/favicon-16x16.png"
   },
-
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["script/page-load.js"],
-      "css": ["css/bootstrap.min.css", "css/style.css"]
+      "css": ["css/importStyle.css"]
     }
   ],
-
   "browser_action": {
     "default_icon": "images/favicon-16x16.png",
-    "default_popup": "templates/menu-popup.html",
+    "default_popup": "templates/popup.html",
     "detault-title": "Comment Like Figma on Web"
   },
-
   "background": {
     "scripts": ["script/eventPage.js"],
     "persistent": false
   },
-
   "permissions": [
-          "storage",
-          "notifications",
-          "contextMenus",
-          "activeTab",
-          "tabs"
-        ],
-
+    "storage",
+    "notifications",
+    "contextMenus",
+    "activeTab",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ],
   "options_page": "templates/options.html",
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'self'"
 }

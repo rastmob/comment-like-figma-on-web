@@ -1,22 +1,15 @@
-console.log('page-load.js loaded');
-let hostname = window.location.hostname;
-let url = window.location.href;
-window.onload = (event) => {
-  const jQueryElement = document.createElement('script');
-  jQueryElement.src = 'https://code.jquery.com/jquery-3.6.1.min.js';
-};
-
-function sendComment() {
-  console.log('send Form');
-  $.ajax({
-    type: "POST",
-    url: "https://clfow.herokuapp.com/comment",
-    data: {
-      address: window.location.href,
-      comment: "test " + new Date().getTime,
-      selector: "test"
-    },
-    success: success,
-    dataType: dataType
+if (RMComment && RMComment.comments) {
+  RMComment.comments.forEach((data) => {
+    console.log(data);
+    if (document.querySelector(data.selector)) {
+      console.log(document.querySelector(data.selector));
+      var img = document.createElement("img");
+      img.src = "https://img.icons8.com/color/512/comments--v1.png";
+      img.className = "RMCOMMENTIMG";
+      img.setAttribute("title", data.comment);
+      document.querySelector(data.selector).before(img);
+    }
   });
+} else {
+  console.log("Comment Null");
 }
