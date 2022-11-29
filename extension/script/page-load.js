@@ -7,7 +7,7 @@ if (RMComment && RMComment.comments) {
       img.src = "https://img.icons8.com/color/512/comments--v1.png";
       img.className = "RMCOMMENTIMG";
       img.setAttribute("title", data.comment);
-      document.querySelector(data.selector).after(img);
+      document.querySelector(data.selector).before(img);
     }
   });
 } else {
