@@ -1,0 +1,28 @@
+<!--<dx-button text="Devextreme button text"></dx-button>-->
+<dx-data-grid [dataSource]="dataSource">
+    <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+  <dxo-paging [pageSize]="10"> </dxo-paging>
+  <dxo-pager
+    [visible]="true"
+    [showPageSizeSelector]="true"
+    [showInfo]="true"
+    [showNavigationButtons]="true"
+  >
+  </dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxo-export [enabled]="true"></dxo-export>
+  <dxo-search-panel
+    [visible]="true"
+    [width]="250"
+    placeholder="Searching ..."
+  >
+
+  </dxo-search-panel>
+
+ <!--<dxi-column dataField="CompanyName"></dxi-column>--> 
+
+</dx-data-grid>
+
+
+<router-outlet></router-outlet>
