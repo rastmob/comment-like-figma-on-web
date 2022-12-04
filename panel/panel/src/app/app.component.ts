@@ -1,19 +1,32 @@
-import { Component } from '@angular/core';
-import { Service } from './app.service';
-import DataSource from 'devextreme/data/data_source';
+import { NgModule, Component, enableProdMode } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { DxDataGridModule } from 'devextreme-angular';
+import { Customer, Service } from './app.service';
 
 
 @Component({
+    styleUrls: ['./app.component.css'],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [Service]
+  providers: [Service],
 })
 export class AppComponent {
-  dataSource: DataSource;
-  
+  customers: Customer[];
 
   constructor(service: Service) {
-    this.dataSource = service.getDataSource();
+    this.customers = service.getCustomers();
   }
 }
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    DxDataGridModule,
+  ],
+  //declarations: [AppComponent],
+  bootstrap: [AppComponent],
+})
+export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

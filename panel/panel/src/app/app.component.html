@@ -1,5 +1,9 @@
 <!--<dx-button text="Devextreme button text"></dx-button>-->
-<dx-data-grid [dataSource]="dataSource">
+<dx-data-grid id="gridContainer"
+[dataSource]="customers"
+keyExpr="ID"
+[columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+[showBorders]="true">
     <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
   <dxo-paging [pageSize]="10"> </dxo-paging>
   <dxo-pager
