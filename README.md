@@ -1,4 +1,6 @@
-# comment-like-figma-on-web
+# Comment like Figma on Web with Chrome Extension
+
+![Comment like Figma on Web with Chrome Extension](https://raw.githubusercontent.com/rastmob/comment-like-figma-on-web/main/1280-640.png)
 
 
 ## For first installation
