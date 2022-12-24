@@ -50,7 +50,7 @@ window.addEventListener("scroll", (e) => {
 document.querySelectorAll("*").forEach((el, i) => {
   el.addEventListener("mouseover", (event) => {
     if (!modalOpen) {
-      selector = generateQuerySelector(event.target);
+      selector = generateQuerySelector(event.target).replaceAll(":", "\\:");
       console.log(selector);
       event.target.classList.add("hoverElRM");
       document.querySelector(".hoverElRM").addEventListener(

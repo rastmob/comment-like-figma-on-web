@@ -25,6 +25,8 @@ function contextMenuCallback() {
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  console.log("changeInfo.status", changeInfo.status);
+  console.log("tab.status", tab.status);
   if (changeInfo.status === "complete") {
     console.log(":::Page Complete");
     chrome.storage.local.get("rmInject", function (result) {
@@ -32,32 +34,44 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
       if (typeof result.rmInject == "boolean" && result.rmInject) {
         console.log(":::Page result.rmInject");
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          fetch("https://clfowapi.rastmobile.com/comment/get", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          chrome.tabs.executeScript(
+            {
+              code: "temp=window.rmloaded;window.rmloaded=true;temp",
             },
-            body: JSON.stringify({ address: tabs[0].url }),
-          })
-            .then((response) => {
-              console.log("loggg::::", response);
-              return response.status == 200 ? response.text() : null;
-            })
-            .then((data) => {
-              console.log(data);
-              if (data && JSON.parse(data).status == 200) {
-                chrome.tabs.executeScript(
-                  {
-                    code: "var RMComment = " + data + ";",
+            function (rmloaded) {
+              console.log("rmloaded", rmloaded);
+              if (!rmloaded[0]) {
+                fetch("https://clfowapi.rastmobile.com/comment/get", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
                   },
-                  function () {
-                    chrome.tabs.executeScript({ file: "script/page-load.js" });
-                  }
-                );
-              } else {
-                console.log(`ERR : ${JSON.parse(data).status}`);
+                  body: JSON.stringify({ address: tabs[0].url }),
+                })
+                  .then((response) => {
+                    console.log("loggg::::", response);
+                    return response.status == 200 ? response.text() : null;
+                  })
+                  .then((data) => {
+                    console.log(data);
+                    if (data && JSON.parse(data).status == 200) {
+                      chrome.tabs.executeScript(
+                        {
+                          code: "window.RMComment = " + data + ";",
+                        },
+                        () => {
+                          chrome.tabs.executeScript({
+                            file: "script/page-load.js",
+                          });
+                        }
+                      );
+                    } else {
+                      console.log(`ERR : ${JSON.parse(data).status}`);
+                    }
+                  });
               }
-            });
+            }
+          );
         });
       }
     });
