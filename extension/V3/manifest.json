@@ -28,8 +28,7 @@
     "notifications",
     "contextMenus",
     "activeTab",
-    "tabs",
-    "https://*/*"
+    "tabs"
   ],
   "options_page": "templates/options.html"
 }

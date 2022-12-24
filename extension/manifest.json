@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Comment Like Figma on Web",
   "description": "",
@@ -14,24 +14,23 @@
       "css": ["css/importStyle.css"]
     }
   ],
-  "browser_action": {
+  "action": {
     "default_icon": "images/favicon-16x16.png",
     "default_popup": "templates/popup.html",
     "detault-title": "Comment Like Figma on Web"
   },
   "background": {
-    "scripts": ["script/eventPage.js"],
-    "persistent": false
+    "service_worker": "script/eventPage.js"
   },
   "permissions": [
     "storage",
+    "scripting",
     "notifications",
     "contextMenus",
     "activeTab",
-    "tabs",
-    "http://*/*",
-    "https://*/*"
+    "tabs"
   ],
-  "options_page": "templates/options.html",
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'self'"
+  "host_permissions": ["*://*/*"],
+  "optional_host_permissions": ["*://*/*"],
+  "options_page": "templates/options.html"
 }

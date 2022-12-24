@@ -14,8 +14,11 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
       message: "",
     };
     chrome.notifications.create("createComment-CLFW", menuItemOptions);
-    chrome.tabs.executeScript({
-      file: "script/index.js",
+    chrome.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        files: ["script/index.js"],
+      });
     });
   }
 });
@@ -34,13 +37,18 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
       if (typeof result.rmInject == "boolean" && result.rmInject) {
         console.log(":::Page result.rmInject");
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          chrome.tabs.executeScript(
+          chrome.scripting.executeScript(
             {
-              code: "temp=window.rmloaded;window.rmloaded=true;temp",
+              target: { tabId: tab.id },
+              func: () => {
+                temp = window.rmloaded;
+                window.rmloaded = true;
+                return temp;
+              },
             },
             function (rmloaded) {
               console.log("rmloaded", rmloaded);
-              if (!rmloaded[0]) {
+              if (!rmloaded[0].result) {
                 fetch("https://clfowapi.rastmobile.com/comment/get", {
                   method: "POST",
                   headers: {
@@ -54,14 +62,20 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                   })
                   .then((data) => {
                     console.log(data);
-                    if (data && JSON.parse(data).status == 200) {
-                      chrome.tabs.executeScript(
+                    data = JSON.parse(data);
+                    if (data && data.status == 200) {
+                      chrome.scripting.executeScript(
                         {
-                          code: "window.RMComment = " + data + ";",
+                          target: { tabId: tab.id },
+                          args: [data],
+                          func: (content) => {
+                            window.RMComment = content;
+                          },
                         },
                         () => {
-                          chrome.tabs.executeScript({
-                            file: "script/page-load.js",
+                          chrome.scripting.executeScript({
+                            target: { tabId: tab.id },
+                            files: ["script/page-load.js"],
                           });
                         }
                       );
