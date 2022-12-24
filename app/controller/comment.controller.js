@@ -64,14 +64,15 @@ const getComments = async (req, res) => {
 
 const createNewComment = async (req, res) => {
     url = helper.getUrlParams(req.body.address);
-    if (!url) {
-        res.send({
-            "status" : 500,
-            "message": "address parameters is required. Please check your address and enter  a valid address",
-        })
-        return;
-    }
+
     try {
+        if (!url) {
+            res.send({
+                "status" : 500,
+                "message": "address parameters is required. Please check your address and enter  a valid address",
+            })
+            return;
+        }
         const [site, createdSite] = await db.sites.findOrCreate({
             where   : {domain: url.host},
             defaults: {title: url.host, active: 1, deleted: 0}
@@ -106,6 +107,12 @@ const createNewComment = async (req, res) => {
 
     } catch (e) {
         console.log(e)
+        res.send({
+            "status"     : 500,
+            "message"    : "Error creating comment",
+            "error"      : e,
+
+        });
     }
 
 }
