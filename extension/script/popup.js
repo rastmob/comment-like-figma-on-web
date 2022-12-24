@@ -4,14 +4,14 @@ chrome.storage.local.get("rmInject", function (result) {
   }
 });
 
-document.getElementById("getCommentCheckBox").addEventListener("change", (event) => {
-  chrome.storage.local.set({ rmInject: event.currentTarget.checked });
-  chrome.storage.local.get("rmInject", function (result) {
-    if (typeof result.rmInject == "boolean") {
+document
+  .getElementById("getCommentCheckBox")
+  .addEventListener("change", (event) => {
+    chrome.storage.local.set({ rmInject: event.currentTarget.checked });
+    chrome.storage.local.get("rmInject", function (result) {
       inject(result.rmInject);
-    }
+    });
   });
-});
 
 function inject(boolean) {
   if (typeof boolean != "boolean") {

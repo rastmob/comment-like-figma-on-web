@@ -1,8 +1,8 @@
-if (RMComment && RMComment.comments) {
+console.log("Inject");
+if (RMComment?.comments) {
   RMComment.comments.forEach((data) => {
     console.log(data);
     if (document.querySelector(data.selector)) {
-      console.log(document.querySelector(data.selector));
       var img = document.createElement("img");
       img.src = "https://img.icons8.com/color/512/comments--v1.png";
       img.className = "RMCOMMENTIMG";
@@ -10,6 +10,4 @@ if (RMComment && RMComment.comments) {
       document.querySelector(data.selector).before(img);
     }
   });
-} else {
-  console.log("Comment Null");
 }

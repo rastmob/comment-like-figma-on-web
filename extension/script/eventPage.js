@@ -28,21 +28,24 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (changeInfo.status === "complete") {
     console.log(":::Page Complete");
     chrome.storage.local.get("rmInject", function (result) {
+      console.log("rmInject", result);
       if (typeof result.rmInject == "boolean" && result.rmInject) {
+        console.log(":::Page result.rmInject");
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-          fetch("https://clfow.herokuapp.com/comment/get", {
+          fetch("https://clfowapi.rastmobile.com/comment/get", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ address: tabs[0].url }),
           })
-            .then((response) =>
-              response.status == 200 ? response.text() : null
-            )
+            .then((response) => {
+              console.log("loggg::::", response);
+              return response.status == 200 ? response.text() : null;
+            })
             .then((data) => {
               console.log(data);
-              if (data) {
+              if (data && JSON.parse(data).status == 200) {
                 chrome.tabs.executeScript(
                   {
                     code: "var RMComment = " + data + ";",
@@ -51,6 +54,8 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                     chrome.tabs.executeScript({ file: "script/page-load.js" });
                   }
                 );
+              } else {
+                console.log(`ERR : ${JSON.parse(data).status}`);
               }
             });
         });

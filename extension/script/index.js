@@ -16,7 +16,7 @@ document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
     "::: Comment",
     document.getElementById(`${modalClass}-comment-text`).value
   );
-  fetch("https://clfow.herokuapp.com/comment/add", {
+  fetch("https://clfowapi.rastmobile.com/comment/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,6 +51,7 @@ document.querySelectorAll("*").forEach((el, i) => {
   el.addEventListener("mouseover", (event) => {
     if (!modalOpen) {
       selector = generateQuerySelector(event.target);
+      console.log(selector);
       event.target.classList.add("hoverElRM");
       document.querySelector(".hoverElRM").addEventListener(
         "contextmenu",
