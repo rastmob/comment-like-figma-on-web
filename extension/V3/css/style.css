@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-familly: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 150px;
+}
+
+.container {
+  position: relative;
+  width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.container .card {
+  position: relative;
+  max-width: 300px;
+  height: 215px;
+  
+  margin: 30px 10px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.container .card:hover {
+  height: 55vh;
+  background-color: #fff;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+}
+
+.container .comment-card {
+  
+  position: relative;
+  max-width: 300px;
+  width:300px;
+  
+  margin: 30px 10px;
+  padding: 20px 15px;
+
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease-in-out;
+  border-radius: 15px;
+  height: 320px;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+  z-index:1000;
+
+}
+
+
+.container .card .image {
+  position: relative;
+  width: 260px;
+  height: 260px;
+
+  top: -40%;
+  left: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.card{
+  border: transparent;
+}
+
+.container .card .image img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.container .card .content {
+  position: relative;
+  top: -180px;
+  padding: 10px 15px;
+  color: #111;
+  text-align: left;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+
+}
+
+.container .card:hover .content {
+  margin-top: 30px;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+
+}
+
+.comment-area {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  top: -40%;
+  left: 8px;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+  z-index: 1;
+  background-color: #fff;
+  border-radius: 75px 75px 75px 0;
+  padding: 50px;
+}
+
+.submit-btn, .submit-btn:hover, .submit-btn:focus, .submit-btn:active{
+  background-color:#7959d8 !important;
+  border-color: none !important;
+  box-shadow: none !important;
+  border-radius: 10px;
+  color:#fff;
+}
+
+.submit-btn:hover{
+  background-color:#664aba !important;
+}
+.comment-area {
+  border-radius: 75px 75px 75px 0;
+}
+.submit-btn{
+  padding: 15px;
+}
