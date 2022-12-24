@@ -13,6 +13,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 
 
+// error handler
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send({
+        "status"     : 500,
+        "message"    : "Bir şey oldu",
+        "error"      : err.message,
+    });
+
+});
+
+
+
 db.sequelize.sync()
     .then(() => {
         console.log("sync db.");
