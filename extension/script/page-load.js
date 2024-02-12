@@ -32,7 +32,7 @@ function showCommentPopup(dataComment) {
 
   var commentHtml = `
 <div class="comment-content">
-    <h3>Comment Title</h3>
+    <h3>Comment:</h3>
     <p>${dataComment}</p>
 </div>
 `;
