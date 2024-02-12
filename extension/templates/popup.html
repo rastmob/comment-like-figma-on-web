@@ -1,25 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <title>RastMobile</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment on Any Website - Rast Mobile</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    width: 100%; /* Ensure the body takes full width */
+    min-width: 400px; /* Set a minimum width */
+}
+
+.container {
+    padding: 20px;
+    width: auto; /* Adjusts width automatically */
+    max-width: 600px; /* Maximum width */
+    margin: auto; /* Center the container */
+}
+
+.logo {
+    width: 100px; /* Adjust based on desired size */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px; /* Center the logo and add some space below it */
+}
+
+header {
+    text-align: center; /* Center header content for a cohesive look */
+}
+
+
+header h1 {
+    font-size: 18px;
+    color: #333;
+}
+
+header p {
+    font-size: 14px;
+    color: #666;
+}
+
+.options .option {
+    margin: 20px 0;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.social-media {
+    margin-top: 20px;
+}
+
+.social-media a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.social-media a:hover {
+    text-decoration: underline;
+}
+
+.open-source {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.open-source h2 {
+    font-size: 16px;
+    color: #333;
+}
+
+.open-source p {
+    font-size: 14px;
+    color: #666;
+}
+
+.open-source a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.open-source a:hover {
+    text-decoration: underline;
+}
+
+</style>
   </head>
-  <body>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        id="getCommentCheckBox"
-        type="checkbox"
-        value=""
-      />
-      <label class="form-check-label" for="getCommentCheckBox">
-        Load Comments every page load
-      </label>
+<body>
+    <div class="container">
+        <header>
+           <a href="https://www.rastmobile.com" target="_blank"><img src="../images/RastMobile_Logo_250x250.png" alt="Rast Mobile Logo" class="logo"></a>
+            <h1>Web Comment Extension</h1>
+            <p>Experience seamless commenting directly on web pages, similar to Figma's intuitive feedback system. Simply right-click on any webpage element to initiate your comment. This feature allows for precise and contextual feedback, streamlining communication and collaboration across your team or audience.</p>
+        </header>
+        <section class="options">
+            <div class="option">
+              <input
+              class="form-check-input"
+              id="getCommentCheckBox"
+              type="checkbox"
+              value=""
+            />
+            <label class="form-check-label" for="getCommentCheckBox">
+              Load Comments every page load
+            </label>
+            </div>
+        </section>
+        <section class="social-media">
+            <h2>Connect with Us</h2>
+            <a href="https://www.rastmobile.com" target="_blank">Website</a> |
+            <a href="https://instagram.com/mobilerast" target="_blank">Instagram</a> |
+            <a href="https://linkedin.com/company/rastmobile" target="_blank">LinkedIn</a> |
+            <a href="mailto:contact@rastmobile.com">Email</a>
+        </section>
+        <section class="open-source">
+            <h2>Open Source</h2>
+            <p>Our extension is open source. Check out the code, star, and contribute on <a href="https://github.com/rastmob/comment-like-figma-on-web" target="_blank">GitHub</a>.</p>
+        </section>
     </div>
     <script src="../script/popup.js"></script>
-  </body>
+</body>
 </html>
