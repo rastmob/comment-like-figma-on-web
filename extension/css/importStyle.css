@@ -33,7 +33,7 @@ div#RModal .comment-input {
   border-radius: 5px;
   line-height: 22px;
   background-color: transparent;
-  border: 2px solid #cc6666;
+  border: 2px solid #cf66f5;
   transition: all 0.3s;
   padding: 13px;
   margin-bottom: 15px;
@@ -43,7 +43,7 @@ div#RModal .comment-input {
 }
 
 div#RModal .comment-input:focus {
-  border: 2px solid #cc4949;
+  border: 2px solid #bc4ce5;
 }
 
 div#RModal textarea {
@@ -56,7 +56,7 @@ div#RModal textarea {
 div#RModal #RModal-submit {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   width: 100%;
-  background: #cc6666;
+  background:rgb(138, 105, 237);
   border-radius: 5px;
   border: 0;
   cursor: pointer;
@@ -69,7 +69,7 @@ div#RModal #RModal-submit {
   font-weight: 700;
 }
 div#RModal #RModal-submit:hover {
-  background: #cc4949;
+  background: rgb(121,88,219)
 }
 
 
@@ -80,7 +80,7 @@ div#RModal #RModal-submit:hover {
   align-items: center;
   margin-top: 20px;
   padding: 10px;
-  background:rgb(204, 102, 102);
+  background:rgb(121,88,219)
 }
 
 .footer-logo img {
