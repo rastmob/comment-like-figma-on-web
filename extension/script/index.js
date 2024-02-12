@@ -6,11 +6,23 @@ var modalClass = "RModal";
 var selector = null;
 var submit = false;
 // const modalId = new Date().getTime() + "-RModal";
-document.body.innerHTML += `
-    <div id="${modalId}" class="${modalClass}">
-      <textarea id="${modalClass}-comment-text" name="text" class="comment-input" placeholder="Comment"></textarea>
-      <button id="${modalId}-submit" type="button">Submit</button>
-    </div>`;
+document.body.innerHTML += `<div id="${modalId}" class="${modalClass}">
+<textarea id="${modalClass}-comment-text" name="text" class="comment-input" placeholder="Write your comment"></textarea>
+<button id="${modalId}-submit" type="button">Send Comment</button>
+<footer class="extension-footer">
+    <a href="https://www.rastmobile.com" target="_blank" class="footer-logo">
+        <img src="https://rastmobile.com/assets/images/rastmobile-logo.svg" alt="Rast Mobile Logo" style="height: 50px;"> <!-- Adjust the height as needed -->
+    </a>
+    <div class="social-links">
+        <a href="https://www.rastmobile.com" target="_blank">Website</a> |
+        <a href="https://instagram.com/mobilerast" target="_blank">Instagram</a> |
+        <a href="https://linkedin.com/company/rastmobile" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/rastmob/comment-like-figma-on-web" target="_blank">GitHub</a>
+    </div>
+    <button id="share-extension" type="button">Share Extension</button>
+</footer>
+
+</div>`;
 document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
   console.log(
     "::: Comment",
@@ -38,6 +50,10 @@ document.getElementById(`${modalId}-submit`).addEventListener("click", () => {
   console.log("Submit");
   document.getElementById(modalId).style.display = "none";
   submit = true;
+});
+
+document.getElementById('share-extension').addEventListener('click', function() {
+  window.open('https://chromewebstore.google.com/detail/comment-like-figma-on-web/fibacpbnmdffbkmdgnoafnlibkghmjjg?hl=en', '_blank');
 });
 
 window.addEventListener("scroll", (e) => {
