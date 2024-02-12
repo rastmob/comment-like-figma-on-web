@@ -4,9 +4,10 @@ div#RModal {
   left: 50%;
   top: 50%;
   z-index: 1000;
-  background-color: black;
+  background-color: #f4f4f4;
   transform: translate(-50%, -50%);
   padding: 20px;
+  filter: drop-shadow(0 0 0.75rem rgb(94, 94, 94));
 }
 .hoverElRM {
   transition: 1s !important;
@@ -33,7 +34,7 @@ div#RModal .comment-input {
   border-radius: 5px;
   line-height: 22px;
   background-color: transparent;
-  border: 2px solid #cf66f5;
+  border: 1px solid #8d4fa3;
   transition: all 0.3s;
   padding: 13px;
   margin-bottom: 15px;
@@ -43,7 +44,7 @@ div#RModal .comment-input {
 }
 
 div#RModal .comment-input:focus {
-  border: 2px solid #bc4ce5;
+  border: 2px solid #8d4fa3;
 }
 
 div#RModal textarea {
@@ -83,23 +84,31 @@ div#RModal #RModal-submit:hover {
   align-items: center;
   margin-top: 20px;
   padding: 10px;
-  background:rgb(121,88,219)
+  background:rgba(121, 88, 219, 0.486)
 }
 
+.footer-logo{
+  display: flex;
+    justify-content: center;
+}
 .footer-logo img {
-  margin-bottom: 10px; 
+  margin:10px 0;
 }
 
 .social-links {
-  margin-bottom: 10px; 
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
 }
 
 
 
 .social-links a {
   margin: 0 5px;
-  color: #007bff;
+  color: #ffffff;
   text-decoration: none;
+padding-left: 10px;
+padding-right: 10px;
 }
 
 .social-links a:hover {
@@ -107,9 +116,7 @@ div#RModal #RModal-submit:hover {
 }
 
 #share-extension {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color:black;
+  background-color:transparent;
   color: white; 
   border: none;
   border-radius: 5px;
@@ -117,7 +124,7 @@ div#RModal #RModal-submit:hover {
 }
 
 #share-extension:hover {
-  background-color: #0056b3;
+  background-color: transparent;
 }
 
 
@@ -145,4 +152,11 @@ div#RModal #RModal-submit:hover {
 .comment-content p {
   font-size: 14px;
   line-height: 1.5;
+}
+
+
+.lines{
+  height: 18px;
+  width: 1px;
+  background-color: #f4f4f4;
 }
